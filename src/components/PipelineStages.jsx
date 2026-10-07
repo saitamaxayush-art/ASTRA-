@@ -177,7 +177,7 @@ export default function PipelineStages() {
                   <span className="card-step-count">0{idx + 1} / 06</span>
                 </div>
                 <span className="card-scroll-badge">
-                  {isCurrent ? '● IN VIEW' : idx < activeStage ? '✓ PASSED' : '↓ SCROLL TO REVEAL'}
+                  {isCurrent ? 'ACTIVE STAGE' : idx < activeStage ? 'COMPLETED' : 'SCROLL TO REVEAL'}
                 </span>
               </div>
 
@@ -585,11 +585,11 @@ function ReliabilityVisual() {
 
           {/* Checks */}
           <g transform="translate(14, 138)">
-            <text x="0" y="12" fill="#10B981" fontSize="10">✓</text>
+            <polyline points="0,9 3,12 8,6" fill="none" stroke="#10B981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <text x="14" y="12" fill="#E2E8F0" fontSize="10">Photometric Consistency</text>
-            <text x="0" y="28" fill="#10B981" fontSize="10">✓</text>
+            <polyline points="0,25 3,28 8,22" fill="none" stroke="#10B981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <text x="14" y="28" fill="#E2E8F0" fontSize="10">Flow Divergence Preserved</text>
-            <text x="0" y="44" fill="#10B981" fontSize="10">✓</text>
+            <polyline points="0,41 3,44 8,38" fill="none" stroke="#10B981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <text x="14" y="44" fill="#E2E8F0" fontSize="10">Lapse Rate Conservation</text>
           </g>
         </g>

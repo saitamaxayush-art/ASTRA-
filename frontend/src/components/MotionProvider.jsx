@@ -1,0 +1,19 @@
+import React, { useEffect } from 'react';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+export function MotionProvider({ children }) {
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    const lenis = new Lenis({ duration: 1.05, smoothWheel: true, wheelMultiplier: 0.9 });
+    const onScroll = () => ScrollTrigger.update();
+    lenis.on('scroll', onScroll);
+    const tick = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+    return () => { gsap.ticker.remove(tick); lenis.off('scroll', onScroll); lenis.destroy(); ScrollTrigger.getAll().forEach(t => t.kill()); };
+  }, []);
+  return children;
+}

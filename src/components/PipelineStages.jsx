@@ -318,7 +318,7 @@ function CalibrationVisual() {
 }
 
 // STAGE 02: Motion Solution
-function MotionSolutionPicture() {
+function MotionVisual() {
   return (
     <div className="pic-wrapper">
       <svg viewBox="0 0 500 240" className="pic-svg" aria-label="Optical Flow Motion Solution">

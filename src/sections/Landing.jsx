@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import CloudCanvas from '../components/CloudCanvas.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { Header, Footer, Eyebrow } from '../components/SiteChrome.jsx';
+import PipelineStages from '../components/PipelineStages.jsx';
 import {
   PLACEHOLDER_METRICS,
   BENCHMARK_COMPARISON,
   SCENARIO_BENCHMARKS,
-  TEAM_MEMBERS,
-  STAGES
+  TEAM_MEMBERS
 } from '../data/metrics.js';
 
 const stack = [
@@ -92,129 +92,53 @@ function Landing() {
           </div>
         </section>
 
-        {/* SECTION 01: HOW IT WORKS - TEMPORAL GAP */}
-        <section className="gap-section section-shell" id="how-it-works">
+        {/* SECTION 01: HOW IT WORKS · 6-STAGE RECONSTRUCTION PIPELINE */}
+        <section className="how-it-works-master-section section-shell" id="how-it-works">
           <Reveal>
-            <div className="section-index">01 / HOW IT WORKS · THE TEMPORAL GAP</div>
-            <div className="gap-title">
+            <div className="section-index">01 / HOW IT WORKS · 6-STAGE PIPELINE ARCHITECTURE</div>
+            <div className="how-it-works-hero-head">
               <h2>
-                Two observations.<br />
-                <span>One evolving atmosphere.</span>
+                Six pipeline stages.<br />
+                <span>One continuous atmospheric reconstruction.</span>
               </h2>
               <p>
-                Simple interpolation blends pixels as if clouds stood still. Motion-based methods advect features,
-                but non-conservative deformation, rapid convection, and cloud growth break pure motion assumptions.
+                Scroll through the cards below to reveal each stage of the solution pipeline. Every card details
+                what you have to do in that step alongside the scientific solution picture produced by the system.
               </p>
             </div>
           </Reveal>
 
-          <div className="gap-diagram">
-            <div className="gap-frame">
-              <CloudCanvas progress={0} seed={6} />
-              <b>OBSERVED</b>
-              <span>t₀</span>
+          {/* Quick Mathematical Formulation Context Bar */}
+          <div className="gap-context-pill-banner">
+            <div className="gap-mini-block">
+              <span className="gap-mini-tag">INPUT OBSERVATION 01</span>
+              <code>I₀ · Brightness Temp @ t₀</code>
             </div>
-            <div className="gap-line">
-              <i /><i /><i /><i /><i />
-              <span>UNOBSERVED INTERVAL</span>
+            <div className="gap-mini-connector">
+              <span>+</span>
             </div>
-            <div className="gap-frame gap-middle">
-              <CloudCanvas progress={progress} seed={6} />
-              <b>RECONSTRUCTED</b>
-              <span>t*</span>
+            <div className="gap-mini-block">
+              <span className="gap-mini-tag">INPUT OBSERVATION 02</span>
+              <code>I₁ · Brightness Temp @ t₁</code>
             </div>
-            <div className="gap-line">
-              <i /><i /><i /><i /><i />
+            <div className="gap-mini-connector">
+              <span>+</span>
             </div>
-            <div className="gap-frame">
-              <CloudCanvas progress={1} seed={6} />
-              <b>OBSERVED</b>
-              <span>t₁</span>
+            <div className="gap-mini-block">
+              <span className="gap-mini-tag">QUERY TIMESTAMP</span>
+              <code>t* · Requested Instant</code>
+            </div>
+            <div className="gap-mini-connector">
+              <i>→</i>
+            </div>
+            <div className="gap-mini-block highlight-recon">
+              <span className="gap-mini-tag">ESTIMATED PHYSICAL STATE</span>
+              <code>Î(t*) + Spatial Confidence + SRI</code>
             </div>
           </div>
-          <div className="gap-caption">
-            <span>Cloud advection · deformation · convective development</span>
-            <span>Illustrative shader field, not satellite observations</span>
-          </div>
-        </section>
 
-        {/* SECTION 02: HOW IT WORKS - MATHEMATICAL FORMULATION */}
-        <section className="idea-section section-shell" id="formulation">
-          <Reveal>
-            <div className="section-index">02 / HOW IT WORKS · CORE FORMULATION</div>
-            <div className="idea-heading">
-              <h2>
-                Estimate the state<br />
-                at a time we did not see.
-              </h2>
-              <p>
-                ASTRA combines two calibrated infrared frames with a target time query. Motion compensation provides a physically grounded first estimate; a learned residual network refines it, bounded by a scientific reliability layer.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="equation">
-            <div className="eq-block">
-              <span>INPUT 01</span>
-              <strong>I₀</strong>
-              <small>Brightness temp<br />at t₀</small>
-            </div>
-            <div className="eq-plus">+</div>
-            <div className="eq-block">
-              <span>INPUT 02</span>
-              <strong>I₁</strong>
-              <small>Brightness temp<br />at t₁</small>
-            </div>
-            <div className="eq-plus">+</div>
-            <div className="eq-block">
-              <span>QUERY</span>
-              <strong className="eq-t">t*</strong>
-              <small>Requested time<br />between observations</small>
-            </div>
-            <div className="eq-arrow">→</div>
-            <div className="eq-output">
-              <span>ESTIMATED STATE</span>
-              <strong>Î(t*)</strong>
-              <small>Intermediate field<br />+ Confidence + SRI</small>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 03: HOW IT WORKS - PIPELINE */}
-        <section className="pipeline-section section-shell">
-          <Reveal>
-            <div className="section-index">03 / HOW IT WORKS · 6-STAGE PIPELINE</div>
-            <div className="pipeline-heading">
-              <h2>
-                From sensor counts<br />
-                to a qualified estimate.
-              </h2>
-              <span>Six stages · one intermediate frame</span>
-            </div>
-          </Reveal>
-
-          <div className="pipeline-grid">
-            {STAGES.map(([n, title, desc], i) => (
-              <Reveal key={n} delay={i * 0.035}>
-                <article className="stage-card">
-                  <div className="stage-top">
-                    <span>{n}</span>
-                    <span className="stage-symbol">{['◫', '⌁', '⤢', '∿', '◎', '⇩'][i]}</span>
-                  </div>
-                  <div className="stage-graphic">
-                    <div className={`stage-line-art stage-${i}`}>
-                      {i === 0 ? 'DN → BT' : i === 1 ? '↗  ↘  →' : i === 2 ? 'I₀ ⇢ Î ⇠ I₁' : i === 3 ? 'I + ΔI = Î' : i === 4 ? '● ◌ ◍' : 'NETCDF / 4'}
-                    </div>
-                  </div>
-                  <h3>{title}</h3>
-                  <p>{desc}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-          <div className="pipeline-foot">
-            FARNEBACK / RAFT-SMALL <span>→</span> BIDIRECTIONAL WARPING <span>→</span> RESIDUAL U-NET · L1 + SSIM
-          </div>
+          {/* INTERACTIVE SCROLL-THROUGH PIPELINE STAGE CARDS */}
+          <PipelineStages />
         </section>
 
         {/* SECTION 04: METHOD COMPARISON (WITH RESULTS) */}

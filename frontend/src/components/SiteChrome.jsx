@@ -1,5 +1,0 @@
-import React from 'react';
-export function Mark(){return <span className="brand-mark" aria-hidden="true"><i/><i/><i/><i/></span>}
-export function Header({demo=false}){return <header className="site-header"><a className="wordmark" href="/" aria-label="ASTRA AI home"><Mark/><span>ASTRA<span className="wordmark-light"> / 17</span></span></a><nav aria-label="Main navigation"><a href={demo?'/':'#method'}>{demo?'Project':'Method'}</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a className="nav-cta" href={demo?'/':'/demo'}>{demo?'Overview':'Open prototype'}<span aria-hidden="true">↗</span></a></nav></header>}
-export function Eyebrow({children}){return <p className="eyebrow"><span className="eyebrow-dot"/>{children}</p>}
-export function Footer(){return <footer className="site-footer"><a className="wordmark" href="/"><Mark/><span>ASTRA<span className="wordmark-light"> / 17</span></span></a><p>Engineering Design & Innovation · Group 17<br/>Department of Computer Engineering, VIT Pune</p><div className="footer-links"><a href="/privacy">Privacy policy</a><a href="/terms">Terms & conditions</a><span>Prototype interface · Mock data</span></div></footer>}

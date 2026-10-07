@@ -54,10 +54,10 @@ section[id] { scroll-margin-top: 96px }
   padding: 10px 0;
   border-radius: 0;
   font-size: 13px;
-  font-family: 'Manrope', Arial, sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
   font-weight: 600;
   letter-spacing: .02em;
-  color: #4A4A60;
+  color: #1e293b;
   transition: color .2s ease;
   white-space: nowrap;
   display: inline-flex;
